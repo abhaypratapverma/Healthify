@@ -183,6 +183,7 @@ body {
 
 /* Results */
 .result-bmi {
+
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
@@ -190,6 +191,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+  text-align: center;
 }
 
 .category-text {
