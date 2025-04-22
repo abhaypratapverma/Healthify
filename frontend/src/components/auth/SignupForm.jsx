@@ -6,7 +6,7 @@ const SignupForm = () =>{
   const handleSignup = (e) => {
     
     // You can add signup logic here if needed
-    navigate("/login"); // Redirect to home page after signup
+    navigate("/auth"); // Redirect to home page after signup
   }
   return (
     <form className="sign-up-form">
