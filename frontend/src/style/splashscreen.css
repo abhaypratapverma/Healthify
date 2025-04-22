@@ -1,0 +1,108 @@
+/* SplashScreen.css */
+.splash-screen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #002de0;
+    background: linear-gradient(90deg, rgba(0, 45, 224, 1) 0%, rgba(87, 165, 207, 1) 50%, rgba(0, 45, 224, 1) 100%);
+    color: white;
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    overflow: hidden;
+    padding: 20px; /* Added padding for better spacing */
+  }
+  
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .splash-text {
+    font-size: 4rem; /* Default font size */
+    font-weight: 800; /* Increased font weight for better visibility */
+    letter-spacing: 3px;
+    color: white;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.6), 0px 0px 30px rgba(255, 255, 255, 0.7);
+    margin-top: 20px;
+    padding: 10px 0;
+    z-index: 2;
+    display: inline-block;
+  }
+  
+  .splash-text.world {
+    font-size: 4.5rem; /* Slightly larger for "World" */
+    margin-top: 10px; /* Adjust to place "World" a bit lower */
+  }
+  
+  .splash-text span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px);
+    animation: slideIn 0.5s forwards;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .splash-text span:nth-child(even) {
+    animation-delay: 0.2s;
+  }
+  
+  .splash-text span:nth-child(odd) {
+    animation-delay: 0.4s;
+  }
+  
+  /* Keyframe animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Media Queries for responsiveness */
+  
+  /* For tablets and smaller devices */
+  @media (max-width: 768px) {
+    .splash-text {
+      font-size: 3rem; /* Adjust font size for tablets */
+    }
+  
+    .splash-text.world {
+      font-size: 3.5rem; /* Adjust "World" text size for tablets */
+    }
+  }
+  
+  /* For mobile devices */
+  @media (max-width: 480px) {
+    .splash-screen {
+      padding: 10px; /* Reduce padding for mobile */
+    }
+  
+    .splash-text {
+      font-size: 2.5rem; /* Smaller font size for mobile */
+    }
+  
+    .splash-text.world {
+      font-size: 3rem; /* Adjust "World" text size for mobile */
+    }
+  
+    .splash-text span {
+      font-size: 2rem; /* Adjust individual letter size for mobile */
+    }
+  }
+  
