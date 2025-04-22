@@ -1,12 +1,76 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
-import '../../style/login.css'; // Import your CSS file here
-import login_bg from "../../assets/login_bg.svg"; // Import your background image here
-import signup_bg from "../../assets/signup_bg.svg"; // Import your signup background image here
+import "../../style/login.css";
+import login_bg from "../../assets/login_bg.svg";
+import signup_bg from "../../assets/signup_bg.svg";
+import "../../style/splashscreen.css";
+import { motion } from "framer-motion";
 
 const LoginPage = () => {
-  const [signUpMode, setSignUpMode] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
+  const [signUpMode, setSignUpMode] = useState(false); // ✅ moved up
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const sentence = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const letter = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  if (showSplash) {
+    return (
+      <motion.div
+        className="splash-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="title-container">
+          <motion.h1
+            variants={sentence}
+            initial="hidden"
+            animate="visible"
+            className="splash-text"
+          >
+            {"Welcome to FIT".split("").map((char, index) => (
+              <motion.span key={index} variants={letter}>
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </motion.h1>
+          <motion.h1
+            variants={sentence}
+            initial="hidden"
+            animate="visible"
+            className="splash-text world"
+          >
+            {"World".split("").map((char, index) => (
+              <motion.span key={index} variants={letter}>
+                {char === " " ? "\u00A0" : char}
+              </motion.span>
+            ))}
+          </motion.h1>
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
     <div className={`container ${signUpMode ? "sign-up-mode" : ""}`}>
