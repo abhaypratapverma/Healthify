@@ -1,0 +1,259 @@
+.home-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .notification-banner {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    padding: 12px;
+    text-align: start;
+    font-weight: bold;
+  }
+  
+  .welcome-section {
+    padding: 16px;
+  }
+  
+  .welcome-heading {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .banner-box {
+    background-color: #eff6ff;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  
+  .banner-image {
+    background-color: #3b82f6;
+    padding: 4px;
+    border-radius: 8px;
+  }
+  
+  .banner-img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .banner-text {
+    flex: 1;
+  }
+  
+  .banner-question {
+    font-weight: 600;
+    color: #1f2937;
+  }
+  
+  .banner-link {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+  
+  .banner-close {
+    color: #9ca3af;
+    transition: color 0.2s;
+  }
+  
+  .banner-close:hover {
+    color: #4b5563;
+  }
+  
+  .latest-activity-section {
+    padding: 0 16px;
+  }
+  
+  .section-heading {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .activity-list {
+    display: flex;
+    gap: 16px;
+    padding: 8px 0;
+  }
+  
+  .activity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f3f4f6;
+    border-radius: 12px;
+    padding: 8px;
+  }
+  
+  .activity-icon-box {
+    background-color: #ffffff;
+    padding: 8px;
+    border-radius: 8px;
+  }
+  
+  .activity-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .activity-label {
+    font-weight: 500;
+    color: #1f2937;
+  }
+  
+  .trending-section {
+    padding: 0 16px;
+    margin-top: 8px;
+  }
+  
+  .trending-banner {
+    background-color: #bfdbfe;
+    border-radius: 8px;
+    margin-top: 12px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+  .trending-img-container {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .trending-bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  
+  .trending-fg-img {
+    position: relative;
+    z-index: 10;
+    object-fit: contain;
+  }
+  
+  .trending-text {
+    padding: 16px;
+  }
+  
+  .trending-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .trending-button {
+    background-color: #2563eb;
+    color: white;
+    padding: 4px 16px;
+    border-radius: 9999px;
+    margin-top: 8px;
+  }
+  
+  .explore-section {
+    padding: 0 16px;
+  }
+  
+  .explore-container {
+    background-color: #f3f4f6;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-top: 16px;
+  }
+  
+  .explore-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    text-align: start;
+    margin-top: 8px;
+  }
+  
+  .explore-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .explore-icon-box {
+    background-color: white;
+    padding: 12px;
+    border-radius: 12px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  }
+  
+  .explore-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .explore-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: 8px;
+  }
+  
+  .ad-section {
+    padding: 0 16px;
+    margin-top: 16px;
+  }
+  
+  .ad-banner {
+    background-color: #fed7aa;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 16px;
+  }
+  
+  .ad-image {
+    width: 88px;
+    height: 88px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: #ffedd5;
+  }
+  
+  .ad-heading {
+    color: #ea580c;
+    font-weight: bold;
+    text-align: start;
+  }
+  
+  .ad-subheading {
+    display: flex;
+    align-items: center;
+    color: #ea580c;
+    font-weight: bold;
+    gap: 4px;
+  }
+  
+  .ad-icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .ad-description {
+    color: #374151;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-align: start;
+  }
