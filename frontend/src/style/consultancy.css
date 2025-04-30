@@ -1,0 +1,114 @@
+.consultancy-container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #e0f7fa, #324bc4);
+    padding: 40px 20px;
+  }
+  
+  .consultancy-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #0066cc;
+    margin-bottom: 50px;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.2);
+  }
+  
+  .consultants-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .consultant-card {
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .consultant-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.2);
+  }
+  
+  .consultant-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #b3e5fc;
+    margin-bottom: 15px;
+  }
+  
+  .consultant-name {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .consultant-specialization {
+    color: #00acc1;
+    font-weight: 500;
+    margin-top: 5px;
+  }
+  
+  .consultant-experience {
+    color: #777;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
+  .consultant-rating {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .star {
+    font-size: 18px;
+    color: #ffd700;
+  }
+
+  .full-star {
+    color: #ffd700;
+  }
+
+  .half-star {
+    color: #ffd700;
+    opacity: 0.5;
+  }
+
+  .empty-star {
+    color: #ccc;
+  }
+
+  .rating-value {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .more-info-button {
+    margin-top: 20px;
+    padding: 10px 24px;
+    /* background: linear-gradient(to right, #42a5f5, #66bb6a); */
+    background: #0066cc;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .more-info-button:hover {
+    background: linear-gradient(to right, #1e88e5, #43a047);
+    transform: scale(1.05);
+  }

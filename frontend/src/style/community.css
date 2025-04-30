@@ -1,0 +1,169 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f9fafb;
+  color: #333;
+}
+
+/* Community Page Layout */
+.community-page {
+  display: flex;
+  padding: 20px;
+  background: #f9fafb;
+  min-height: 100vh;
+  gap: 20px;
+}
+
+/* Sidebar */
+.community-sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-section {
+  margin-bottom: 30px;
+}
+
+.sidebar-section h3 {
+  font-size: 18px;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.sidebar-section ul {
+  list-style: none;
+}
+
+.sidebar-section li {
+  margin-bottom: 8px;
+  color: #333;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.sidebar-section li:hover {
+  color: #4caf50;
+}
+
+.sidebar-section p {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Main Feed */
+.community-feed {
+  flex: 1;
+}
+
+.community-feed h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+/* Post Card */
+.post-card {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-info h4 {
+  color: #4caf50;
+  margin-bottom: 5px;
+}
+
+.user-info small {
+  color: #777;
+  font-size: 12px;
+}
+
+.post-options {
+  font-size: 20px;
+  color: #777;
+  cursor: pointer;
+}
+
+.post-card p {
+  margin-bottom: 15px;
+  color: #555;
+}
+
+.post-actions {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .community-page {
+    flex-direction: column;
+  }
+
+  .community-sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .post-card {
+    padding: 15px;
+  }
+
+  .post-header h4 {
+    font-size: 1rem;
+  }
+
+  .post-header small {
+    font-size: 10px;
+  }
+
+  .post-actions {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 375px) {
+  .community-page {
+    padding: 10px;
+  }
+
+  .community-sidebar {
+    padding: 15px;
+  }
+
+  .post-card {
+    padding: 10px;
+  }
+
+  .post-header h4 {
+    font-size: 0.9rem;
+  }
+
+  .post-header small {
+    font-size: 9px;
+  }
+
+  .post-actions {
+    font-size: 11px;
+  }
+}

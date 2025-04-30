@@ -105,11 +105,11 @@ const Home = () => {
               <span className="explore-label">Fitness</span>
             </div>
 
-            <div className="explore-item" onClick={() => navigate("/beauty")}>
+            <div className="explore-item" onClick={() => navigate("/bmi")}>
               <div className="explore-icon-box">
                 <img src={beauty} className="explore-icon" alt="Fitness" />
               </div>
-              <span className="explore-label">Beauty</span>
+              <span className="explore-label">Bmi</span>
             </div>
 
             <div className="explore-item" onClick={() => navigate("/fitness")}>
