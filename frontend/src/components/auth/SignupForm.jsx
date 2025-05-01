@@ -7,7 +7,11 @@ const API = import.meta.env.VITE_API_URL;
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
@@ -17,13 +21,21 @@ const SignupForm = () => {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${API}/api/auth/signup`, formData);
+      const response = await axios.post(`${API}/api/auth/register`, formData, {
+        headers: { "Content-Type": "application/json" },
+      });
+
       if (response.status === 201) {
-        setError(""); // Clear any previous errors
-        navigate("/"); // Redirect to login page
+        // After signup, you can either:
+        // 1. auto-login (save token if response gives it)
+        // OR
+        // 2. navigate to login page
+
+        setError("");
+        navigate("/"); // Redirect to login page after signup
       }
     } catch (err) {
-      setError(err.response?.data?.message || "Something went wrong");
+      setError(err.response?.data?.message || "Signup failed. Try again.");
     }
   };
 

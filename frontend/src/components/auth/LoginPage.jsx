@@ -49,7 +49,7 @@ const LoginPage = () => {
             animate="visible"
             className="splash-text"
           >
-            {"Welcome to FIT".split("").map((char, index) => (
+            {"Welcome to Healthify".split("").map((char, index) => (
               <motion.span key={index} variants={letter}>
                 {char === " " ? "\u00A0" : char}
               </motion.span>
@@ -61,11 +61,11 @@ const LoginPage = () => {
             animate="visible"
             className="splash-text world"
           >
-            {"World".split("").map((char, index) => (
+            {/* {"World".split("").map((char, index) => (
               <motion.span key={index} variants={letter}>
                 {char === " " ? "\u00A0" : char}
               </motion.span>
-            ))}
+            ))} */}
           </motion.h1>
         </div>
       </motion.div>
