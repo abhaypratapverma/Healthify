@@ -17,6 +17,8 @@ import Insights from "./pages/Insights";
 import Community from "./pages/Community";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import Meditation from "./components/Meditation";
+
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
         <Route path="/consultants/:id" element={<><ConsultantProfile /><Footer /></>} />
         <Route path="/insights" element={<><Insights /><Footer /></>} />
         <Route path="/community" element={<><Community /><Footer /></>} />
+        <Route path="/meditation" element={<><Meditation /><Footer /></>} />
+        
       </Routes>
     </Router>
   );

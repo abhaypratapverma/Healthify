@@ -138,11 +138,11 @@ const Home = () => {
               <span className="explore-label">Insights</span>
             </div>
             {/*  */}
-            <div className="explore-item" onClick={() => navigate("/entertainment")}>
+            <div className="explore-item" onClick={() => navigate("/meditation")}>
               <div className="explore-icon-box">
                 <img src={cooking} className="explore-icon" alt="Fitness" />
               </div>
-              <span className="explore-label">Cooking</span>
+              <span className="explore-label">Meditation</span>
             </div>
           </div>
         </div>
