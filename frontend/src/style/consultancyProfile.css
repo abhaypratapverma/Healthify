@@ -1,0 +1,114 @@
+.consultant-profile-container {
+    min-height: 100vh;
+    background: linear-gradient(to top right, #f3e5f5, #e0f7fa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 20px;
+  }
+  
+  .consultant-profile-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 40px 30px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.95);}
+    to {opacity: 1; transform: scale(1);}
+  }
+  
+  .consultant-profile-image {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #81d4fa;
+    margin-bottom: 20px;
+  }
+  
+  .consultant-profile-name {
+    text-align: center;
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .consultant-profile-specialization {
+    font-size: 20px;
+    color: #0288d1;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  
+  .consultant-profile-experience {
+    font-size: 16px;
+    color: #757575;
+    margin-bottom: 20px;
+  }
+  
+  .consultant-profile-description {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    padding: 0 10px;
+  }
+  
+  .consultant-profile-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .book-button,
+  .callback-button {
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .book-button {
+    background: linear-gradient(to right, #66bb6a, #43a047);
+    color: white;
+  }
+  
+  .callback-button {
+    background: linear-gradient(to right, #42a5f5, #1e88e5);
+    color: white;
+  }
+  
+  .book-button:hover,
+  .callback-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .consultant-profile-error {
+    min-height: 100vh;
+    background-color: #fbe9e7;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .consultant-profile-error button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
