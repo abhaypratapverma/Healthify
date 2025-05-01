@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import LoginPage from "./components/auth/LoginPage";
 import Home from "./Home";
 import { BmiCalculator } from "./pages/BmiCalculator";
@@ -14,85 +15,33 @@ import Consultancy from "./pages/consultancy/Consultancy";
 import ConsultantProfile from "./pages/consultancy/ConsultancyProfile";
 import Insights from "./pages/Insights";
 import Community from "./pages/Community";
-import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Navigate to="/auth" replace />} />
-          <Route path="/auth" element={<LoginPage />} />
+    <Router>
+      {/* Navbar appears on all pages */}
+      <Navbar />
 
-          {/* Protected Routes */}
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/bmi"
-            element={
-              <ProtectedRoute>
-                <BmiCalculator />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/fasting"
-            element={
-              <ProtectedRoute>
-                <FastingTracker />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/activity"
-            element={
-              <ProtectedRoute>
-                <ActivityLogger />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/consultancy"
-            element={
-              <ProtectedRoute>
-                <Consultancy />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/consultants/:id"
-            element={
-              <ProtectedRoute>
-                <ConsultantProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/insights"
-            element={
-              <ProtectedRoute>
-                <Insights />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/community"
-            element={
-              <ProtectedRoute>
-                <Community />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </>
+      <Routes>
+        {/* Default Route: Go to Home directly */}
+        <Route path="/" element={<Navigate to="/home" replace />} />
+
+        {/* Optional Auth Route */}
+        <Route path="/auth" element={<LoginPage />} />
+
+        {/* Unprotected Routes (No login required) */}
+        <Route path="/home" element={<><Home /><Footer /></>} />
+        <Route path="/bmi" element={<><BmiCalculator /><Footer /></>} />
+        <Route path="/fasting" element={<><FastingTracker /><Footer /></>} />
+        <Route path="/activity" element={<><ActivityLogger /><Footer /></>} />
+        <Route path="/consultancy" element={<><Consultancy /><Footer /></>} />
+        <Route path="/consultants/:id" element={<><ConsultantProfile /><Footer /></>} />
+        <Route path="/insights" element={<><Insights /><Footer /></>} />
+        <Route path="/community" element={<><Community /><Footer /></>} />
+      </Routes>
+    </Router>
   );
 }
 

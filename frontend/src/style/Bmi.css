@@ -142,10 +142,13 @@ body {
 .bmi-value {
   font-size: 3rem;
   font-weight: bold;
+  color: #6366f1; /* fallback */
   background: linear-gradient(to right, #6366f1, #8b5cf6);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 
 .bmi-category {
   font-size: 1.25rem;
