@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import authRoutes from './routes/authRoutes.js'; // ✅ correct route file
 import userRoutes from './routes/userRoutes.js'; // ✅ correct route file
+import bmiRoutes from './routes/bmiRoutes.js'; // ✅ correct route file
 dotenv.config();
 
 const app = express();
@@ -20,6 +21,7 @@ mongoose.connect(process.env.MONGODB_URI)
 
 app.use('/api/auth', authRoutes);
 app.use("/api/user", userRoutes);
+app.use('/api/bmi', bmiRoutes);
 app.get('/', (req, res) => {
   res.send('Welcome to Healthify Backend!');
 });
