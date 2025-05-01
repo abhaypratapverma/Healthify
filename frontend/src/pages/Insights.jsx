@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Line, Bar } from "react-chartjs-2";
+import axios from "axios";
 import "../style/insights.css"; // Ensure this CSS file exists and is styled appropriately
 import {
   Chart as ChartJS,
@@ -14,20 +15,49 @@ import {
 } from "chart.js";
 import Side_Nav from "../components/Side_Nav"; // Assuming you have a Side_Nav component for navigation
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
+// Register the chart elements
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend
+);
+
+// Define your API base URL
+const API = "https://your-api-url.com"; // <-- Change this to your real API URL
 
 const Insights = () => {
   const [bmiData, setBmiData] = useState([22.4, 22.2, 22.0, 21.9, 21.8, 21.7, 21.6]);
   const [stepsData, setStepsData] = useState([7500, 8000, 8500, 9000, 9500, 10000, 10500]);
-  const [walkingProgress, setWalkingProgress] = useState([30, 45, 60, 50, 70, 80, 90]); // Walking progress in minutes
-  const [fastingTime, setFastingTime] = useState([12, 14, 16, 15, 13, 14, 16]); // Fasting time in hours
-  const [foodData, setFoodData] = useState([2000, 2500, 2200, 1800, 2100, 2300, 2000]); // Example calories intake data
+  const [walkingProgress, setWalkingProgress] = useState([30, 45, 60, 50, 70, 80, 90]);
+  const [fastingTime, setFastingTime] = useState([12, 14, 16, 15, 13, 14, 16]);
+  const [foodData, setFoodData] = useState([2000, 2500, 2200, 1800, 2100, 2300, 2000]);
   const [appointments, setAppointments] = useState([
     { id: 1, doctor: "Dr. Affandi Malik", patient: "Steve Mariyadi", date: "2025-04-29", disease: "Fever", status: "Confirmed" },
     { id: 2, doctor: "Dr. Aisyah Zahra", patient: "Lilly Wardhani", date: "2025-04-30", disease: "Toothache", status: "Pending" },
     { id: 3, doctor: "Dr. Lamine Haryono", patient: "Sari Nurhayati", date: "2025-05-01", disease: "Vertigo", status: "Booked" },
     { id: 4, doctor: "Dr. Othman Ibrahim", patient: "James Budiman", date: "2025-05-02", disease: "Sore Eyes", status: "Uploaded" },
   ]);
+  const [userName, setUserName] = useState("User");
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await axios.get('http://localhost:5000/api/user/profile', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setUserName(response.data.name);
+      } catch (error) {
+        console.error("Error fetching user name:", error.response?.data?.message || error.message);
+      }
+    };
+    fetchUserName();
+  }, []);
 
   const bmiChartData = {
     labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
@@ -111,7 +141,7 @@ const Insights = () => {
           {/* Header */}
           <header className="dashboard-header">
             <h1>Insights</h1>
-            <p>Hi! User</p>
+            <p>Hi! {userName}</p>
           </header>
 
           {/* Summary Cards */}
@@ -181,6 +211,7 @@ const Insights = () => {
               </tbody>
             </table>
           </div>
+
         </div>
       </div>
     </div>
