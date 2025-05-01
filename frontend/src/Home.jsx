@@ -144,6 +144,14 @@ const Home = () => {
               </div>
               <span className="explore-label">Meditation</span>
             </div>
+
+            <div className="explore-item" onClick={() => navigate("/nutrition")}>
+              <div className="explore-icon-box">
+                <img src={cooking} className="explore-icon" alt="nutrition" />
+              </div>
+              <span className="explore-label">Nutrition</span>
+            </div>
+
           </div>
         </div>
       </div>

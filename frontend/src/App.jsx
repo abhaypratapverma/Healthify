@@ -19,6 +19,8 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Meditation from "./components/Meditation";
 
+import NutritionalValues from "./components/NutritionalValues";
+
 
 function App() {
   return (
@@ -43,6 +45,8 @@ function App() {
         <Route path="/insights" element={<><Insights /><Footer /></>} />
         <Route path="/community" element={<><Community /><Footer /></>} />
         <Route path="/meditation" element={<><Meditation /><Footer /></>} />
+
+        <Route path="/nutrition" element={<><NutritionalValues /><Footer /></>} />
         
       </Routes>
     </Router>

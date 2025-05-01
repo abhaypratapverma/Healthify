@@ -1,0 +1,399 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4edf9 100%);
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  .nutrition-app {
+    min-height: 100vh;
+    padding: 2rem 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+  }
+  
+  /* Header Styles */
+  .app-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .app-title {
+    font-size: 2.5rem;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .app-title:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #4CAF50, #8BC34A);
+    border-radius: 2px;
+  }
+  
+  .app-description {
+    font-size: 1.2rem;
+    color: #4a5568;
+  }
+  
+  /* Tab Styles */
+  .main-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .tab {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    background: transparent;
+    color: #4a5568;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+    width: 50%;
+  }
+  
+  .tab:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .tab.active-veg {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    color: white;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+  }
+  
+  .tab.active-nonveg {
+    background: linear-gradient(135deg, #FF5722, #F44336);
+    color: white;
+    box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);
+  }
+  
+  /* Category Filter Styles */
+  .category-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    color: #4a5568;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .filter-btn:hover {
+    background-color: #f1f5f9;
+    border-color: #cbd5e0;
+  }
+  
+  .filter-btn.active {
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  }
+  
+  /* Food Category Styles */
+  .food-category {
+    margin-bottom: 2.5rem;
+    opacity: 1; /* Remove the initial opacity:0 that was causing animation issues */
+    transform: translateY(0); /* Reset transform to prevent animation issues */
+  }
+  
+  .category-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2d3748;
+    position: relative;
+    padding-left: 1rem;
+    border-left: 4px solid #4CAF50;
+  }
+  
+  .food-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  /* Food Card Styles */
+  .food-card {
+    height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+  opacity: 1; /* Remove the initial opacity:0 that was causing animation issues */
+  overflow: hidden;
+  }
+  
+  .food-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 1rem;
+    
+  }
+  
+  .food-card:hover .food-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .food-card-front, .food-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+   
+  }
+  
+  .food-card-front {
+    background: linear-gradient(to bottom right, #ffffff, #f0f4f8);
+    border: 1px solid rgba(226, 232, 240, 0.7);
+  }
+  
+  .food-card-back {
+    background: linear-gradient(135deg, #2d3748, #1a202c);
+    color: white;
+    transform: rotateY(180deg);
+  }
+  
+  .food-emoji {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .food-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  
+  .food-calories {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #4CAF50;
+    margin-bottom: 0.25rem;
+  }
+  
+  .food-serving {
+    font-size: 0.75rem;
+    color: #718096;
+  }
+  
+  .food-name-back {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .nutrition-info {
+    width: 100%;
+    font-size: 0.8rem;
+  }
+  
+  .macros {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 0.75rem;
+  }
+  
+  .macro-row, .micro-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  
+  .macro-row span:nth-child(2), .micro-row span:nth-child(2) {
+    font-weight: 600;
+  }
+  
+  /* Adding 3D effects and enhancements */
+  .food-card:hover .food-card-inner {
+    transform: rotateY(180deg) translateZ(10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  }
+  
+  .food-card-front {
+    box-shadow: 
+      0 8px 15px rgba(0, 0, 0, 0.1),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.4);
+  }
+  
+  /* Add depth to the cards with gradients */
+  .food-card:nth-child(3n+1) .food-card-front {
+    background: linear-gradient(135deg, #ffffff, #f0f8ff);
+    border-top: 4px solid #4CAF50;
+  }
+  
+  .food-card:nth-child(3n+2) .food-card-front {
+    background: linear-gradient(135deg, #ffffff, #f2f8ff);
+    border-top: 4px solid #2196F3;
+  }
+  
+  .food-card:nth-child(3n+3) .food-card-front {
+    background: linear-gradient(135deg, #ffffff, #f5f0ff);
+    border-top: 4px solid #9C27B0;
+  }
+  
+  /* Back card variations */
+  .food-card:nth-child(3n+1) .food-card-back {
+    background: linear-gradient(135deg, #2d3748, #1a202c);
+  }
+  
+  .food-card:nth-child(3n+2) .food-card-back {
+    background: linear-gradient(135deg, #1a365d, #0e2436);
+  }
+  
+  .food-card:nth-child(3n+3) .food-card-back {
+    background: linear-gradient(135deg, #3c1361, #271037);
+  }
+  
+  /* Add hover effects */
+  .food-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .food-cards-grid {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+    
+    .category-filter {
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      justify-content: flex-start;
+    }
+    
+    .category-filter::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    .category-filter::-webkit-scrollbar-thumb {
+      background: #cbd5e0;
+      border-radius: 2px;
+    }
+    
+    .app-title {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .food-cards-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .food-card {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    
+    .tab {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+    
+    .app-title {
+      font-size: 1.75rem;
+    }
+  }
+  
+  /* Adding scroll animation for category sections */
+  .food-category {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Staggered animation for food cards */
+  .food-card {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .food-card:nth-child(1) { animation-delay: 0.1s; }
+  .food-card:nth-child(2) { animation-delay: 0.2s; }
+  .food-card:nth-child(3) { animation-delay: 0.3s; }
+  .food-card:nth-child(4) { animation-delay: 0.4s; }
+  .food-card:nth-child(5) { animation-delay: 0.5s; }
+  .food-card:nth-child(6) { animation-delay: 0.6s; }
+  .food-card:nth-child(7) { animation-delay: 0.7s; }
+  .food-card:nth-child(8) { animation-delay: 0.8s; }
+
+
+  .container::before {
+    display: none !important;
+  }
+  
