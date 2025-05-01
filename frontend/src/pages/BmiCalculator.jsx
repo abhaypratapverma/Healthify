@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 import "..//style/Bmi.css";
 
 const getRecommendations = (category) => {
@@ -81,6 +82,38 @@ export function BmiCalculator() {
     workout: [],
     diet: [],
   });
+  const [bmiHistory, setBmiHistory] = useState([]);
+
+  useEffect(() => {
+    const fetchBmiHistory = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get('http://localhost:5000/api/bmi/history', {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setBmiHistory(response.data);
+      } catch (error) {
+        console.error('Error fetching BMI history:', error.response?.data?.message || error.message);
+      }
+    };
+
+    fetchBmiHistory();
+  }, []);
+
+  const handleCalculate = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const response = await axios.post(
+        'http://localhost:5000/api/bmi/calculate',
+        { weight, height },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      setBmi(response.data.bmi);
+      setBmiHistory((prev) => [response.data, ...prev]);
+    } catch (error) {
+      console.error('Error calculating BMI:', error.response?.data?.message || error.message);
+    }
+  };
 
   const calculateBmi = () => {
     const w = parseFloat(weight);
@@ -203,7 +236,7 @@ export function BmiCalculator() {
                 </button>
               </div>
             </div>
-            <button className="calculate-btn" onClick={calculateBmi}>
+            <button className="calculate-btn" onClick={handleCalculate}>
               Calculate BMI
             </button>
           </div>
