@@ -22,8 +22,8 @@ export default function Navbar() {
   // Menu items with icons
   const menuItems = [
     { name: 'Home', icon: <Home size={18} /> },
-    { name: 'Dashboard', icon: <BarChart2 size={18} /> },
-    { name: 'Track Health', icon: <Activity size={18} /> },
+    { name: 'Insights', icon: <BarChart2 size={18} /> },
+    { name: 'BMI', icon: <Activity size={18} /> },
   ];
 
   return (
