@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import image40 from "./assets/homeImages/image40.png";
 import image28 from "./assets/homeImages/image 28.png";
 import fitness from "./assets/homeImages/fitness.svg";
@@ -17,12 +17,13 @@ import imageMandla from "./assets/homeImages/image-mandala.svg";
 import beauty from "./assets/homeImages/beauty.svg";
 import cooking from "./assets/homeImages/cooking.svg";
 import { useNavigate } from "react-router-dom";
-// import BottomNav from "./BottomNav";
 import "./style/home.css";
 import BottomNav from "./common/nav/BottomNav";
+
 const Home = () => {
   const [showNotification, setShowNotification] = useState(true);
   const [banner, setBanner] = useState(true);
+  const [userData, setUserData] = useState(null); // State to store user data
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,6 +32,26 @@ const Home = () => {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
+
+  // Fetch user profile from the backend
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const token = localStorage.getItem("token"); // Get the token from localStorage
+        const response = await axios.get("http://localhost:5000/api/user/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        });
+        setUserData(response.data); // Update state with user data
+      } catch (error) {
+        console.error("Error fetching user profile:", error.response?.data?.message || error.message);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
   return (
     <div className="home-wrapper">
       {showNotification && (
@@ -40,7 +61,9 @@ const Home = () => {
       )}
 
       <div className="welcome-section">
-        <h2 className="welcome-heading">Hi, Abhay Pratap Verma 👋</h2>
+        <h2 className="welcome-heading">
+          Hi, {userData ? userData.name : "Guest"} 👋
+        </h2>
         {banner && (
           <div className="banner-box">
             <div className="banner-image">
@@ -64,7 +87,6 @@ const Home = () => {
             </div>
             <span className="activity-label">Baking</span>
           </div>
-          {/* Repeat activity-item for others */}
           <div className="activity-item">
             <div className="activity-icon-box">
               <img src={Group2} className="activity-icon" alt="Yoga Icon" />
@@ -118,12 +140,11 @@ const Home = () => {
               </div>
               <span className="explore-label">Meditation</span>
             </div>
-            {/* Repeat explore-item */}
             <div className="explore-item" onClick={() => navigate("/entertainment")}>
               <div className="explore-icon-box">
                 <img src={Group43} className="explore-icon" alt="Fitness" />
               </div>
-              <span className="explore-label">Grroming</span>
+              <span className="explore-label">Grooming</span>
             </div>
             <div className="explore-item" onClick={() => navigate("/entertainment")}>
               <div className="explore-icon-box">
@@ -131,7 +152,6 @@ const Home = () => {
               </div>
               <span className="explore-label">Entertainment</span>
             </div>
-            {/*  */}
             <div className="explore-item" onClick={() => navigate("/entertainment")}>
               <div className="explore-icon-box">
                 <img src={cooking} className="explore-icon" alt="Fitness" />
@@ -157,11 +177,8 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <BottomNav /> */}
       <BottomNav />
     </div>
-
-
   );
 };
 
