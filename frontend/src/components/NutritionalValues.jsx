@@ -1,5 +1,6 @@
 import '../style/NutritionalValues.css';
 import { useEffect, useState } from "react";
+import axios from 'axios';
 
 const FoodCard = ({ food }) => {
   return (
@@ -71,6 +72,8 @@ export default function NutritionalValuesPage() {
   const [activeVegCategory, setActiveVegCategory] = useState('all');
   const [vegFoods, setVegFoods] = useState({});
   const [nonVegFoods, setNonVegFoods] = useState([]);
+  const [history, setHistory] = useState([]);
+  const API = 'http://localhost:5000';
 
   useEffect(() => {
     fetch('http://localhost:5000/api/food')
@@ -94,6 +97,22 @@ export default function NutritionalValuesPage() {
       })
       .catch(error => console.error('Error fetching food data:', error));
   }, []);
+
+  useEffect(() => {
+    const fetchFastingHistory = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const response = await axios.get(`${API}/api/fasting`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setHistory(response.data); // Update the history state with the fetched data
+      } catch (error) {
+        console.error('Error fetching fasting history:', error.response?.data?.message || error.message);
+      }
+    };
+
+    fetchFastingHistory();
+  }, [API]);
 
   const renderVegFoods = () => {
     if (activeVegCategory === 'all') {

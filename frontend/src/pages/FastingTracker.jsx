@@ -1,23 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import '../style/fastingTracker.css'; // Import your CSS styles here
+import '../style/fastingTracker.css';
 
 const AdvancedFastingTracker = () => {
-  // State variables
   const [isFasting, setIsFasting] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [endTime, setEndTime] = useState(null);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [elapsedTime, setElapsedTime] = useState(0);
-  const [selectedGoal, setSelectedGoal] = useState(16); // Default 16 hours
+  const [selectedGoal, setSelectedGoal] = useState(16);
   const [history, setHistory] = useState([]);
-  const [streak, setStreak] = useState(0);
   const [quote, setQuote] = useState('');
   const [showGoalSelector, setShowGoalSelector] = useState(false);
   const goalSelectorRef = useRef(null);
   const API = import.meta.env.VITE_API_URL;
 
-  // Array of motivational quotes
   const motivationalQuotes = [
     "Fasting is not about starving yourself; it's about healing yourself.",
     "The food you eat can be either the safest & most powerful form of medicine or the slowest form of poison.",
@@ -31,10 +28,8 @@ const AdvancedFastingTracker = () => {
     "Fasting cleanses the body, clears the mind, and cleanses the soul."
   ];
 
-  // Goals options (in hours)
   const fastingGoals = [14, 16, 18, 20, 24];
 
-  // Fetch fasting history from the backend
   useEffect(() => {
     const fetchFastingHistory = async () => {
       try {
@@ -42,16 +37,14 @@ const AdvancedFastingTracker = () => {
         const response = await axios.get(`${API}/api/fasting`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setHistory(response.data);
+        setHistory(Array.isArray(response.data) ? response.data : [response.data]);
       } catch (error) {
         console.error('Error fetching fasting history:', error.response?.data?.message || error.message);
       }
     };
-
     fetchFastingHistory();
   }, [API]);
 
-  // Timer effect
   useEffect(() => {
     let timer;
     if (isFasting && startTime) {
@@ -62,7 +55,6 @@ const AdvancedFastingTracker = () => {
     return () => clearInterval(timer);
   }, [isFasting, startTime]);
 
-  // Calculate elapsed time
   useEffect(() => {
     if (isFasting && startTime) {
       const elapsed = currentTime - new Date(startTime);
@@ -70,7 +62,6 @@ const AdvancedFastingTracker = () => {
     }
   }, [currentTime, isFasting, startTime]);
 
-  // Rotate quotes
   useEffect(() => {
     const randomQuote = motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)];
     setQuote(randomQuote);
@@ -78,12 +69,11 @@ const AdvancedFastingTracker = () => {
     const quoteInterval = setInterval(() => {
       const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
       setQuote(motivationalQuotes[randomIndex]);
-    }, 30000); // Rotate every 30 seconds
+    }, 30000);
 
     return () => clearInterval(quoteInterval);
   }, []);
 
-  // Format time from milliseconds to HH:MM:SS
   const formatTime = (ms) => {
     const totalSeconds = Math.floor(ms / 1000);
     const hours = Math.floor(totalSeconds / 3600);
@@ -93,13 +83,11 @@ const AdvancedFastingTracker = () => {
     return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
 
-  // Calculate progress percentage
   const calculateProgress = () => {
     const goalMs = selectedGoal * 60 * 60 * 1000;
     return Math.min((elapsedTime / goalMs) * 100, 100);
   };
 
-  // Start or stop fasting
   const toggleFasting = async () => {
     if (!isFasting) {
       const now = new Date();
@@ -112,23 +100,18 @@ const AdvancedFastingTracker = () => {
       setEndTime(now);
       setIsFasting(false);
 
-      // Calculate duration
-      const duration = (now - new Date(startTime)) / (1000 * 60 * 60); // Duration in hours
-
-      // Save fasting session to the backend
       try {
         const token = localStorage.getItem('token');
         const response = await axios.post(
           `${API}/api/fasting`,
           {
-            startTime,
-            endTime: now,
-            notes: `Fasted for ${duration.toFixed(2)} hours`,
+            startTime: startTime.toISOString(),
+            endTime: now.toISOString(),
+            notes: `Felt great, stayed hydrated.`,
           },
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
-        // Update history with the new session
         setHistory((prevHistory) => [response.data, ...prevHistory]);
       } catch (error) {
         console.error('Error saving fasting session:', error.response?.data?.message || error.message);
@@ -136,13 +119,11 @@ const AdvancedFastingTracker = () => {
     }
   };
 
-  // Set fasting goal
   const changeGoal = (hours) => {
     setSelectedGoal(hours);
     setShowGoalSelector(false);
   };
 
-  // Calculate stroke-dasharray and stroke-dashoffset for SVG circle
   const calculateCircleProgress = () => {
     const radius = 70;
     const circumference = 2 * Math.PI * radius;
@@ -151,7 +132,7 @@ const AdvancedFastingTracker = () => {
 
     return {
       strokeDasharray: `${circumference} ${circumference}`,
-      strokeDashoffset: offset
+      strokeDashoffset: offset,
     };
   };
 
@@ -168,9 +149,7 @@ const AdvancedFastingTracker = () => {
               <circle className="progress-ring-circle-bg" cx="100" cy="100" r="70" />
               <circle
                 className="progress-ring-circle"
-                cx="100"
-                cy="100"
-                r="70"
+                cx="100" cy="100" r="70"
                 style={{
                   strokeDasharray: circleStyle.strokeDasharray,
                   strokeDashoffset: circleStyle.strokeDashoffset
@@ -189,66 +168,50 @@ const AdvancedFastingTracker = () => {
             </div>
           </div>
 
-          <div className="controls-section">
-            <div className="goal-selector-container" ref={goalSelectorRef}>
-              <button
-                className="goal-selector-button"
-                onClick={() => setShowGoalSelector(!showGoalSelector)}
-              >
-                <span>{selectedGoal} Hours</span>
-                <span className="arrow-down">▼</span>
-              </button>
+          <div className="control-buttons">
+            <button
+              onClick={toggleFasting}
+              className={`toggle-button ${isFasting ? 'stop' : 'start'}`}
+            >
+              {isFasting ? 'Stop Fasting' : 'Start Fasting'}
+            </button>
 
+            <div className="goal-selector">
+              <button onClick={() => setShowGoalSelector(!showGoalSelector)}>
+                Change Goal
+              </button>
               {showGoalSelector && (
-                <div className="goal-dropdown">
-                  {fastingGoals.map((hours) => (
-                    <div
-                      key={hours}
-                      className={`goal-option ${selectedGoal === hours ? 'active' : ''}`}
-                      onClick={() => changeGoal(hours)}
+                <div className="goal-options" ref={goalSelectorRef}>
+                  {fastingGoals.map((goal) => (
+                    <button
+                      key={goal}
+                      onClick={() => changeGoal(goal)}
+                      className="goal-option-button"
                     >
-                      {hours} Hours
-                    </div>
+                      {goal} hours
+                    </button>
                   ))}
                 </div>
               )}
             </div>
-
-            <button
-              className={`fasting-toggle-button ${isFasting ? 'stop' : 'start'}`}
-              onClick={toggleFasting}
-            >
-              {isFasting ? 'Stop Fasting' : 'Start Fasting'}
-            </button>
           </div>
         </div>
 
-        <div className="quote-container">
-          <p className="quote-text">"{quote}"</p>
+        <div className="quote-section">
+          <p className="motivational-quote">{quote}</p>
         </div>
 
         <div className="history-section">
-          <h2 className="section-title">Fasting History</h2>
-
-          <div className="history-list">
-            {history.length > 0 ? (
-              history.map((session) => (
-                <div key={session._id} className="history-item">
-                  <div className="history-date">
-                    {new Date(session.startTime).toLocaleDateString()} - {new Date(session.endTime).toLocaleDateString()}
-                  </div>
-                  <div className="history-duration">
-                    Duration: {session.duration.toFixed(2)} hours
-                  </div>
-                  <div className="history-notes">
-                    Notes: {session.notes}
-                  </div>
-                </div>
-              ))
-            ) : (
-              <p>No fasting history available.</p>
-            )}
-          </div>
+          <h2>Fasting History</h2>
+          <ul>
+            {history.map((record) => (
+              <li key={record._id} className="history-record">
+                <div><strong>Start:</strong> {new Date(record.startTime).toLocaleString()}</div>
+                <div><strong>End:</strong> {new Date(record.endTime).toLocaleString()}</div>
+                <div><strong>Duration:</strong> {record.duration.toFixed(2)} hours</div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </div>

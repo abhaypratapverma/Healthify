@@ -4,7 +4,7 @@ export const logFasting = async (req, res) => {
   const { startTime, endTime, notes } = req.body;
 
   try {
-    const duration = (new Date(endTime) - new Date(startTime)) / (1000 * 60 * 60); // Calculate duration in hours
+    const duration = (new Date(endTime) - new Date(startTime)) / (1000 * 60 * 60); // Duration in hours
     if (duration <= 0) {
       return res.status(400).json({ message: 'End time must be after start time' });
     }
@@ -17,10 +17,10 @@ export const logFasting = async (req, res) => {
       notes,
     });
 
-    await newFastingRecord.save();
-    res.status(201).json(newFastingRecord);
+    const savedRecord = await newFastingRecord.save();
+    res.status(201).json(savedRecord);
   } catch (error) {
-    res.status(500).json({ message: 'Error logging fasting record' });
+    res.status(500).json({ message: error.message || 'Error logging fasting record' });
   }
 };
 
@@ -29,7 +29,7 @@ export const getFastingHistory = async (req, res) => {
     const fastingHistory = await FastingRecord.find({ user: req.user._id }).sort({ createdAt: -1 });
     res.status(200).json(fastingHistory);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching fasting history' });
+    res.status(500).json({ message: error.message || 'Error fetching fasting history' });
   }
 };
 
@@ -44,9 +44,9 @@ export const deleteFastingRecord = async (req, res) => {
       return res.status(401).json({ message: 'Not authorized to delete this record' });
     }
 
-    await fastingRecord.remove();
+    await fastingRecord.deleteOne();
     res.status(200).json({ message: 'Fasting record deleted successfully' });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting fasting record' });
+    res.status(500).json({ message: error.message || 'Error deleting fasting record' });
   }
 };
