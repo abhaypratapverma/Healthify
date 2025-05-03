@@ -98,7 +98,7 @@ const Home = () => {
             <div className="activity-icon-box">
               <img src={Group2} className="activity-icon" alt="Yoga Icon" />
             </div>
-            <span className="activity-label">nutrition</span>
+            <span className="activity-label">Nutrition</span>
           </div>
           <div
             className="activity-item"
