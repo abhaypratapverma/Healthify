@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SocialIcons from "../../assets/SocialIcons";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -19,11 +20,12 @@ const LoginForm = () => {
         `${API}/api/auth/login`,
         formData,
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       );
       if (response.status === 200) {
-        // Store the token in localStorage
         localStorage.setItem("token", response.data.token);
         navigate("/home");
       }
@@ -37,6 +39,7 @@ const LoginForm = () => {
       <h2 className="title">Sign in</h2>
       {error && <p className="error-text">{error}</p>}
       <div className="input-field">
+        <i className="fas fa-envelope"></i>
         <input
           type="email"
           name="email"
@@ -47,6 +50,7 @@ const LoginForm = () => {
         />
       </div>
       <div className="input-field">
+        <i className="fas fa-lock"></i>
         <input
           type="password"
           name="password"
@@ -57,6 +61,10 @@ const LoginForm = () => {
         />
       </div>
       <input type="submit" value="Login" className="btn solid" />
+      <p className="social-text">Or Sign in with social platforms</p>
+      <div className="social-media">
+        <SocialIcons />
+      </div>
     </form>
   );
 };

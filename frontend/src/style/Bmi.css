@@ -8,6 +8,7 @@
 
 body {
   font-family: system-ui, sans-serif; /* Tailwind uses system fonts by default */
+  color: black;
 }
 
 .bmi-container {
@@ -94,6 +95,7 @@ body {
 
 .input-group input {
   width: 8rem;
+  color:black;
   padding: 0.5rem;
   text-align: center;
   border-radius: 0.5rem;
@@ -144,10 +146,13 @@ body {
 .bmi-value {
   font-size: 3rem;
   font-weight: bold;
+  color: #6366f1; /* fallback */
   background: linear-gradient(to right, #6366f1, #8b5cf6);
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 
 .bmi-category {
   font-size: 1.25rem;

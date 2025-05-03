@@ -7,6 +7,8 @@ import userRoutes from './routes/userRoutes.js'; // ✅ correct route file
 import bmiRoutes from './routes/bmiRoutes.js'; // ✅ correct route file
 import activityRoutes from './routes/activitiesRoutes.js'; // ✅ correct route file
 import fastingRoutes from './routes/fastingRoutes.js';
+import foodRoutes from './routes/foodRoutes.js';
+
 dotenv.config();
 
 const app = express();
@@ -26,6 +28,7 @@ app.use("/api/user", userRoutes);
 app.use('/api/bmi', bmiRoutes);
 app.use('/api/activity', activityRoutes);
 app.use('/api/fasting', fastingRoutes);
+app.use('/api/food', foodRoutes);
 app.get('/', (req, res) => {
   res.send('Welcome to Healthify Backend!');
 });

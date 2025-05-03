@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+
 import LoginPage from "./components/auth/LoginPage";
 import Home from "./Home";
 import { BmiCalculator } from "./pages/BmiCalculator";
@@ -14,85 +15,113 @@ import Consultancy from "./pages/consultancy/Consultancy";
 import ConsultantProfile from "./pages/consultancy/ConsultancyProfile";
 import Insights from "./pages/Insights";
 import Community from "./pages/Community";
-import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
+import Meditation from "./components/Meditation";
+import NutritionalValues from "./components/NutritionalValues";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+
+// Layout wrapper for pages with Navbar and Footer
+const Layout = ({ children }) => (
+  <>
+    <Navbar />
+    {children}
+    <Footer />
+  </>
+);
 
 function App() {
   return (
-    <>
-      <Router>
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Navigate to="/auth" replace />} />
-          <Route path="/auth" element={<LoginPage />} />
+    <Router>
+      <Routes>
+        {/* Default Route: Redirect to /auth */}
+        <Route path="/" element={<Navigate to="/auth" replace />} />
 
-          {/* Protected Routes */}
-          <Route
-            path="/home"
-            element={
-              <ProtectedRoute>
-                <Home />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/bmi"
-            element={
-              <ProtectedRoute>
-                <BmiCalculator />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/fasting"
-            element={
-              <ProtectedRoute>
-                <FastingTracker />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/activity"
-            element={
-              <ProtectedRoute>
-                <ActivityLogger />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/consultancy"
-            element={
-              <ProtectedRoute>
-                <Consultancy />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/consultants/:id"
-            element={
-              <ProtectedRoute>
-                <ConsultantProfile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/insights"
-            element={
-              <ProtectedRoute>
-                <Insights />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/community"
-            element={
-              <ProtectedRoute>
-                <Community />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </Router>
-    </>
+        {/* Authentication Route */}
+        <Route path="/auth" element={<LoginPage />} />
+
+        {/* Protected/Unprotected Routes with Layout */}
+        <Route
+          path="/home"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
+        <Route
+          path="/bmi"
+          element={
+            <Layout>
+              <BmiCalculator />
+            </Layout>
+          }
+        />
+        <Route
+          path="/fasting"
+          element={
+            <Layout>
+              <FastingTracker />
+            </Layout>
+          }
+        />
+        <Route
+          path="/activity"
+          element={
+            <Layout>
+              <ActivityLogger />
+            </Layout>
+          }
+        />
+        <Route
+          path="/consultancy"
+          element={
+            <Layout>
+              <Consultancy />
+            </Layout>
+          }
+        />
+        <Route
+          path="/consultants/:id"
+          element={
+            <Layout>
+              <ConsultantProfile />
+            </Layout>
+          }
+        />
+        <Route
+          path="/insights"
+          element={
+            <Layout>
+              <Insights />
+            </Layout>
+          }
+        />
+        <Route
+          path="/community"
+          element={
+            <Layout>
+              <Community />
+            </Layout>
+          }
+        />
+        <Route
+          path="/meditation"
+          element={
+            <Layout>
+              <Meditation />
+            </Layout>
+          }
+        />
+        <Route
+          path="/nutrition"
+          element={
+            <Layout>
+              <NutritionalValues />
+            </Layout>
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
-import "..//style/Bmi.css";
+import "../style/Bmi.css";
 
 const getRecommendations = (category) => {
   switch (category) {
@@ -82,38 +81,6 @@ export function BmiCalculator() {
     workout: [],
     diet: [],
   });
-  const [bmiHistory, setBmiHistory] = useState([]);
-
-  useEffect(() => {
-    const fetchBmiHistory = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get('http://localhost:5000/api/bmi/history', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setBmiHistory(response.data);
-      } catch (error) {
-        console.error('Error fetching BMI history:', error.response?.data?.message || error.message);
-      }
-    };
-
-    fetchBmiHistory();
-  }, []);
-
-  const handleCalculate = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        'http://localhost:5000/api/bmi/calculate',
-        { weight, height },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      setBmi(response.data.bmi);
-      setBmiHistory((prev) => [response.data, ...prev]);
-    } catch (error) {
-      console.error('Error calculating BMI:', error.response?.data?.message || error.message);
-    }
-  };
 
   const calculateBmi = () => {
     const w = parseFloat(weight);
@@ -195,7 +162,7 @@ export function BmiCalculator() {
               <input
                 type="number"
                 value={weight}
-                onChange={(e) => setWeight(e.target.value)}
+                onChange={(e) => setWeight(e.target.value)} // Update weight state
                 placeholder="70"
               />
             </div>
@@ -204,7 +171,7 @@ export function BmiCalculator() {
               <input
                 type="number"
                 value={height}
-                onChange={(e) => setHeight(e.target.value)}
+                onChange={(e) => setHeight(e.target.value)} // Update height state
                 placeholder="170"
               />
             </div>
@@ -213,7 +180,7 @@ export function BmiCalculator() {
               <input
                 type="number"
                 value={age}
-                onChange={(e) => setAge(e.target.value)}
+                onChange={(e) => setAge(e.target.value)} // Update age state
                 placeholder="25"
               />
             </div>
@@ -222,7 +189,7 @@ export function BmiCalculator() {
               <div>
                 <button
                   className={`gender-btn ${gender === "male" ? "active" : ""}`}
-                  onClick={() => setGender("male")}
+                  onClick={() => setGender("male")} // Update gender state
                 >
                   Male
                 </button>
@@ -230,13 +197,13 @@ export function BmiCalculator() {
                   className={`gender-btn ${
                     gender === "female" ? "active" : ""
                   }`}
-                  onClick={() => setGender("female")}
+                  onClick={() => setGender("female")} // Update gender state
                 >
                   Female
                 </button>
               </div>
             </div>
-            <button className="calculate-btn" onClick={handleCalculate}>
+            <button className="calculate-btn" onClick={calculateBmi}>
               Calculate BMI
             </button>
           </div>

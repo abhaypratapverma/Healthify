@@ -1,0 +1,172 @@
+/* Navbar base styles */
+.navbar {
+    width: 100%;
+    max-width: 100%;
+    z-index: 1000;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(30, 144, 255, 0.9) 0%, rgba(0, 191, 255, 0.9) 100%);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2), 
+                0 2px 8px rgba(0, 123, 255, 0.1),
+                inset 0 1px 1px rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 0 0 16px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+  }
+  
+  /* Navbar scroll state */
+  .navbar-scrolled {
+    background: linear-gradient(135deg, rgba(0, 123, 255, 0.95) 0%, rgba(0, 180, 216, 0.95) 100%);
+    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.25), 
+                0 4px 10px rgba(0, 123, 255, 0.15),
+                inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    height: 60px;
+  }
+  
+  /* Container for navbar content */
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    height: 70px;
+  }
+  
+  /* Logo styling */
+  .logo {
+    position: relative;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  margin-right: auto; /* Ensure logo is aligned to the left */
+  z-index: 2; /* Ensures the logo stays on top */
+  overflow: hidden; /* Prevents the logo's animation from overflowing */
+  }
+  
+
+  .logo:hover .logo-text {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  }
+  
+  
+  .logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #e6f7ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Navigation links container */
+  .nav-links {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+  }
+  
+  /* Individual navigation items */
+  .nav-item {
+    position: relative;
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  /* Navigation item hover effect */
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1;
+  }
+  
+  .nav-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .nav-item:hover::before {
+    transform: translateY(0);
+  }
+  
+  /* Icon and text positioning within nav items */
+  .nav-icon {
+    margin-right: 6px;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-text {
+    position: relative;
+    z-index: 2;
+  }
+  
+  /* Logout button special styling */
+  .logout {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(100, 198, 255, 0.575);
+  }
+  
+  .logout:hover {
+    background: rgba(255, 100, 100, 0.3);
+  }
+  
+  /* Responsive styles */
+  @media screen and (max-width: 768px) {
+    .navbar-container {
+      padding: 0 15px;
+    }
+    
+    .logo-text {
+      font-size: 20px;
+    }
+    
+    .nav-item {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+    
+    .nav-links {
+      gap: 3px;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .nav-icon {
+      margin-right: 3px;
+    }
+    
+    .nav-item {
+      padding: 5px 8px;
+      font-size: 13px;
+    }
+  }

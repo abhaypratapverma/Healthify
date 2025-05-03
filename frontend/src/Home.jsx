@@ -19,6 +19,7 @@ import cooking from "./assets/homeImages/cooking.svg";
 import { useNavigate } from "react-router-dom";
 import "./style/home.css";
 import BottomNav from "./common/nav/BottomNav";
+import Protien from "./assets/Protien.webp";
 
 const Home = () => {
   const [showNotification, setShowNotification] = useState(true);
@@ -81,23 +82,32 @@ const Home = () => {
       <div className="latest-activity-section">
         <h3 className="section-heading">Latest Activity</h3>
         <div className="activity-list">
-          <div className="activity-item">
+          <div
+            className="activity-item"
+            onClick={() => navigate("/meditation")} // Navigate to Meditation
+          >
             <div className="activity-icon-box">
-              <img src={Group53} className="activity-icon" alt="Baking Icon" />
+              <img src={Group53} className="activity-icon" alt="Meditation Icon" />
             </div>
-            <span className="activity-label">Baking</span>
+            <span className="activity-label">Meditation</span>
           </div>
-          <div className="activity-item">
+          <div
+            className="activity-item"
+            onClick={() => navigate("/nutrition")} // Navigate to Yoga (replace with actual path if different)
+          >
             <div className="activity-icon-box">
               <img src={Group2} className="activity-icon" alt="Yoga Icon" />
             </div>
-            <span className="activity-label">Yoga</span>
+            <span className="activity-label">nutrition</span>
           </div>
-          <div className="activity-item">
+          <div
+            className="activity-item"
+            onClick={() => navigate("/bmi")} // Navigate to BMI
+          >
             <div className="activity-icon-box">
-              <img src={Group54} className="activity-icon" alt="Yoga Icon" />
+              <img src={Group54} className="activity-icon" alt="BMI Icon" />
             </div>
-            <span className="activity-label">Makeup</span>
+            <span className="activity-label">Bmi</span>
           </div>
         </div>
       </div>
@@ -111,7 +121,12 @@ const Home = () => {
           </div>
           <div className="trending-text">
             <h4 className="trending-title">Meditation <br />for stress free life</h4>
-            <button className="trending-button">Join now</button>
+            <button
+              className="trending-button"
+              onClick={() => navigate("/meditation")} // Navigate to /meditation
+            >
+              Join now
+            </button>
           </div>
         </div>
       </div>
@@ -120,11 +135,12 @@ const Home = () => {
         <div className="explore-container">
           <h3 className="section-heading">Explore</h3>
           <div className="explore-grid">
-            <div className="explore-item" onClick={() => navigate("/fitness")}>
+
+            <div className="explore-item" onClick={() => navigate("/activity")}>
               <div className="explore-icon-box">
-                <img src={fitness} className="explore-icon" alt="Fitness" />
+                <img src={fitness} className="explore-icon" alt="ActivityLogger" />
               </div>
-              <span className="explore-label">Fitness</span>
+              <span className="explore-label">ActivityLogger</span>
             </div>
 
             <div className="explore-item" onClick={() => navigate("/bmi")}>
@@ -134,37 +150,58 @@ const Home = () => {
               <span className="explore-label">Bmi</span>
             </div>
 
-            <div className="explore-item" onClick={() => navigate("/fitness")}>
+
+            
+            <div className="explore-item" onClick={() => navigate("/fasting")}>
               <div className="explore-icon-box">
-                <img src={Group45} className="explore-icon" alt="Fitness" />
+                <img src={Group45} className="explore-icon" alt="FastingTracker" />
               </div>
-              <span className="explore-label">Meditation</span>
+              <span className="explore-label">FastingTracker</span>
             </div>
-            <div className="explore-item" onClick={() => navigate("/entertainment")}>
+            
+
+
+            {/* Repeat explore-item */}
+            <div className="explore-item" onClick={() => navigate("/community")}>
               <div className="explore-icon-box">
-                <img src={Group43} className="explore-icon" alt="Fitness" />
+                <img src={Group43} className="explore-icon" alt="Community" />
               </div>
-              <span className="explore-label">Grooming</span>
+              <span className="explore-label">Community</span>
             </div>
-            <div className="explore-item" onClick={() => navigate("/entertainment")}>
+            <div className="explore-item" onClick={() => navigate("/insights")}>
               <div className="explore-icon-box">
-                <img src={entertainment} className="explore-icon" alt="Fitness" />
+                <img src={entertainment} className="explore-icon" alt="Insights" />
               </div>
-              <span className="explore-label">Entertainment</span>
+              <span className="explore-label">Insights</span>
             </div>
-            <div className="explore-item" onClick={() => navigate("/entertainment")}>
+            {/*  */}
+            <div className="explore-item" onClick={() => navigate("/meditation")}>
               <div className="explore-icon-box">
                 <img src={cooking} className="explore-icon" alt="Fitness" />
               </div>
-              <span className="explore-label">Cooking</span>
+              <span className="explore-label">Meditation</span>
             </div>
+
+            <div className="explore-item" onClick={() => navigate("/nutrition")}>
+              <div className="explore-icon-box">
+                <img src={cooking} className="explore-icon" alt="nutrition" />
+              </div>
+              <span className="explore-label">Nutrition</span>
+            </div>
+            <div className="explore-item" onClick={() => navigate("/consultancy")}>
+              <div className="explore-icon-box">
+                <img src={cooking} className="explore-icon" alt="nutrition" />
+              </div>
+              <span className="explore-label">Consultancy</span>
+            </div>
+
           </div>
         </div>
       </div>
 
       <div className="ad-section">
         <div className="ad-banner">
-          <img src={image35} className="ad-image" alt="Ad" />
+          <img src={Protien} className="ad-image" alt="Ad" />
           <div>
             <h3 className="ad-heading">Diwali</h3>
             <span className="ad-subheading">

@@ -13,7 +13,13 @@ const BottomNav = () => {
   return (
     <nav className="bottom-nav">
       <div className="nav-group">
-        <button className="nav-button" onClick={() => { setActive("home"); navigate("/home"); }}>
+        <button
+          className="nav-button"
+          onClick={() => {
+            setActive("home");
+            navigate("/home"); // Correct path for Home
+          }}
+        >
           <div className={`nav-content ${active === "home" ? "active" : ""}`}>
             <img src={Group9} className="nav-icon" alt="Home" />
             <span className="nav-label">Home</span>
@@ -21,7 +27,13 @@ const BottomNav = () => {
         </button>
       </div>
       <div className="nav-group">
-        <button className="nav-button" onClick={() => { setActive("fitness"); navigate("/fitness"); }}>
+        <button
+          className="nav-button"
+          onClick={() => {
+            setActive("fitness");
+            navigate("/activity"); // Correct path for Fitness (Activity Logger)
+          }}
+        >
           <div className={`nav-content ${active === "fitness" ? "active" : ""}`}>
             <img src={Group8} className="nav-icon" alt="Fitness" />
             <span className="nav-label">Fitness</span>
@@ -29,18 +41,30 @@ const BottomNav = () => {
         </button>
       </div>
       <div className="nav-group">
-        <button className="nav-button" onClick={() => { setActive("cooking"); navigate("/cooking"); }}>
+        <button
+          className="nav-button"
+          onClick={() => {
+            setActive("cooking");
+            navigate("/nutrition"); // Correct path for Nutrition
+          }}
+        >
           <div className={`nav-content ${active === "cooking" ? "active" : ""}`}>
             <img src={cooking} className="nav-icon" alt="Cooking" />
-            <span className="nav-label">Cooking</span>
+            <span className="nav-label">Nutrition</span>
           </div>
         </button>
       </div>
       <div className="nav-group">
-        <button className="nav-button" onClick={() => { setActive("beauty"); navigate("/beauty"); }}>
+        <button
+          className="nav-button"
+          onClick={() => {
+            setActive("beauty");
+            navigate("/consultancy"); // Correct path for Consultancy
+          }}
+        >
           <div className={`nav-content ${active === "beauty" ? "active" : ""}`}>
             <img src={beauty} className="nav-icon" alt="Beauty" />
-            <span className="nav-label">Beauty</span>
+            <span className="nav-label">Consultancy</span>
           </div>
         </button>
       </div>
