@@ -111,4 +111,116 @@
     cursor: pointer;
     font-size: 16px;
   }
+
+  .video-call-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
   
+  .local-video,
+  .remote-video {
+    width: 300px;
+    height: 200px;
+    background: black;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .video-call-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to top right, #f3e5f5, #e0f7fa);
+    min-height: 100vh;
+  }
+  
+  .video-call-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .video-call-controls {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    background-color: #7aa1c4;
+  }
+  
+  .control-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #42a5f5;
+    color: white;
+    transition: background 0.3s ease;
+  }
+  
+  .control-button.disconnect {
+    background: #e53935;
+  }
+  
+  .control-button:hover {
+    background: #1e88e5;
+  }
+  
+  .control-button.disconnect:hover {
+    background: #d32f2f;
+  }
+
+  /* Styling for the room-link section */
+  .room-link {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f3f4f6;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    margin: 20px auto;
+  }
+  
+  .room-link p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .room-link input {
+    width: 80%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .room-link input:focus {
+    border-color: #0066cc;
+  }
+  
+  .room-link button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background: #0066cc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  .room-link button:hover {
+    background: #004a99;
+    transform: scale(1.05);
+  }

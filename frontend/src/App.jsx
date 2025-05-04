@@ -19,6 +19,7 @@ import Meditation from "./components/Meditation";
 import NutritionalValues from "./components/NutritionalValues";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import VideoCallPage from "./components/VideoCallPage";
 
 // Layout wrapper for pages with Navbar and Footer
 const Layout = ({ children }) => (
@@ -89,6 +90,15 @@ function App() {
           }
         />
         <Route
+          path="/video-call/:roomId"
+          element={
+            <Layout>
+              <VideoCallPage />
+            </Layout>
+          }
+        />
+
+        <Route
           path="/insights"
           element={
             <Layout>
@@ -117,6 +127,14 @@ function App() {
           element={
             <Layout>
               <NutritionalValues />
+            </Layout>
+          }
+        />
+        <Route
+          path="/video-call"
+          element={
+            <Layout>
+              <VideoCallPage />
             </Layout>
           }
         />
